@@ -1,0 +1,102 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>Account Transfer</title>
+
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#"> </a>
+</nav>
+
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1>Accounts</h1>
+    </div>
+    
+   <table class="table" id="myTable">
+    <tr>
+    	<th>#</th>
+    	<th style="width: 25%">Account Number</th>
+        <th style="width: 25%">Account Holder</th>
+        <th style="width: 25%">Email</th>
+        <th style="width: 25%">Balance</th>
+        <th style="width: 25%">View</th>
+        <th style="width: 25%">Edit</th>
+        <th style="width: 25%">Transfer</th>
+    </tr>
+
+    <tr th:each="account, itemStat : ${accounts}" th:onclick="'javascript:rowClicked(\'' + ${account.accountNumber}} + '\');'">
+            <td><span th:text="${__${itemStat.index}__ + 1}"> Row Number </span></td>
+            <td><span class="pd-acc" th:text="${account.accountNumber}"> Title </span></td>
+            <td><span th:text="${account.accountHolderName}"> Author </span></td>
+            
+            <td><span contenteditable class="pd-email" th:text="${account.email}" th:type=text> email </span ></td>
+            <td><span th:text="${account.displayBalance}"> balance </span></td>
+	        <td><input type="hidden" th:value="${account.accountNumber}" name="accountnumber"/>
+	        <button class="btnSelect btn btn-link" type="submit" name="action" value="transactions">view transactions</button></td>
+	        
+	        <td><input type="hidden" th:value="${account.email}" name="email"/>
+	        <button class="btnUpdate btn btn-link" type="submit" name="action" value="email" data-toggle="tooltip" data-placement="top" title="click on email field to edit">update email</button></td>
+		
+		    <td><input type="hidden" th:value="${account.email}" name="email"/>
+	        <button class="btnTransfer btn btn-link" type="submit" name="action" value="transfer">transfer</button></td>
+		
+		</tr> 
+</table>
+
+</main>
+<!-- /.container -->
+
+ <script type="text/javascript" th:inline="javascript">
+
+ 
+ jQuery(document).ready(function($){
+
+	 $("#myTable").on('click', '.btnSelect', function() {
+	   	  // get the current row
+	   	  var currentRow = $(this).closest("tr");
+
+	   	  var col1 = currentRow.find(".pd-acc").html();  
+ 
+	 
+	 
+	   	location.href = "/transactions?account-number=" + col1;
+ 
+	 });
+	 
+	 
+	 $("#myTable").on('click', '.btnUpdate', function() {
+	   	  // get the current row
+	   	  var currentRow = $(this).closest("tr");
+
+	   	  var email = currentRow.find(".pd-email").html();  
+	   	  var accountNumber = currentRow.find(".pd-acc").html();  
+	   	 
+	   	location.href = "/account/edit?email=" + email + "&accountNumber=" + accountNumber;
+
+	 });
+	 
+	 $("#myTable").on('click', '.btnTransfer', function() {
+	     
+	   	location.href = "/transfer";
+
+	 });
+  
+	
+	});
+ 
+	    </script>
+<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+</body>
+</html>

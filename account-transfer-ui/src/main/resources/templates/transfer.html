@@ -1,0 +1,134 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <title>See Transactions</title>
+
+    <link rel="stylesheet" th:href="@{webjars/bootstrap/4.2.1/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/css/main.css}"/>
+
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
+    <a class="navbar-brand" href="#"> </a>
+</nav>
+
+<main role="main" class="container">
+
+    <div class="starter-template">
+        <h1>Transfer</h1>
+    </div>
+    
+<h2>Pay</h2>
+<br/>
+
+	<form  class="form-horizontal" action="#" th:action="@{/transfer}"
+		th:object="${transferForm}" method="POST">
+		<div>
+			<p class="success" th:if="${success != null}" th:text="${success}">success message</p>
+		</div>
+		<div th:if="${#fields.hasGlobalErrors()}">
+			<p th:each="err : ${#fields.globalErrors()}" th:text="${err}"
+				class="error" />
+		</div>
+	
+<b>From:</b>
+		<div class="form-group">
+		<select th:field="*{fromAccountNumber}" class="form-control" id="dropDownList">
+			<option value="0" disabled>select account</option>
+			<option th:each="account, itemStat : ${accountsList}"
+				th:value="${account.accountNumber}"
+				th:text="${account.accountHolderName} + ' [' + ${account.accountNumber} + ']'"
+				th:name="|account.id|">
+		</select>
+
+		</div>
+		
+		<b>To: </b>
+		 <div class="form-group">
+		<select th:field="*{toAccountNumber}" class="form-control" id="dropDownList">
+			<option value="0" disabled>select account</option>
+			<option th:each="account, itemStat : ${accountsList}"
+				th:value="${account.accountNumber}"
+				th:text="${account.accountHolderName} + ' [' + ${account.accountNumber} + ']'"
+				th:name="|account.id|">
+		</select>
+
+		</div>
+		
+		<div>
+			<label> <b>Enter amount</b> <span>&#163;</span></label>
+   			 <input type="number" name="amount" id="amount" placeholder="Amount">  
+		
+			<ul>
+				<li th:each="err : ${#fields.errors('amount')}" th:text="${err}" class="error" />
+			</ul>
+		</div>
+		
+		<button class="btn btn-primary" type="submit" value="transfer">Transfer</button>
+  		<a href="/accounts"> <input class="btn btn-secondary"  type="button" value="View All Accounts" /></a>
+
+	</form>
+
+		<div th:if="${not #lists.isEmpty(transactions)}">
+		 
+ <br>
+ <br>
+    <div> 
+    <p class="h4" >	Transaction history</p>
+    </div>
+  <br>
+
+ <div><b>Balance: </b>   
+	<span th:text="${balance}"></span>
+	</div>
+			<table class="table">
+				<tr>
+					<th>#</th>
+					<th>Amount</th>
+					<th>To Account Number</th>
+				</tr>
+				<tr th:each="transaction, itemStat : ${transactions}">
+					<td><span th:text="${__${itemStat.index}__ + 1}"> Row Number </span></td>
+					<td><span th:text="${transaction.displayAmount}"> amount </span></td>
+					<td><span th:text="${transaction.toAccountNumber}">	email </span></td>
+					<td><input type="hidden" th:value="${transaction.id}" name="id" /></td>
+				</tr>
+			</table>
+		</div>
+
+ 
+ <style>
+    .error {
+        color: red;
+    }
+    
+    .success {
+        color: green;
+    }
+    
+    .accounts { 
+    display: flex;
+    align-items: left;
+    justify-content: space-between;
+}
+</style>
+
+
+</main>
+
+ <script type="text/javascript" th:inline="javascript">
+		
+ 
+ function rowClicked(value) {
+     location.href = "/transactions?id=" + value;
+ }
+	    </script>
+
+<script type="text/javascript" th:src="@{webjars/bootstrap/4.2.1/js/bootstrap.min.js}"></script>
+</body>
+</html>
