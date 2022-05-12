@@ -5,6 +5,7 @@ services:
         build:
             context: './account-transfer-ui'
             dockerfile: Dockerfile
+        working_dir: /account-transfer-api
         image: account-transfer-ui:latest
         ports:
             - 8080:8080    
@@ -13,6 +14,7 @@ services:
         build:
             context: './account-transfer-api'
             dockerfile: Dockerfile
+        working_dir: /account-transfer-api
         image: account-transfer-api:latest
         ports:
             - 8081:8081
