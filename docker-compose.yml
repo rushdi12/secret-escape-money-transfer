@@ -1,5 +1,13 @@
 version: '3.7'
 services:
+    account-transfer-ui:
+        container_name: account-transfer-ui
+        build:
+            context: './account-transfer-ui'
+            dockerfile: Dockerfile
+        image: account-transfer-ui:latest
+        ports:
+            - 8080:8080    
     account-transfer-api:
         container_name: account-transfer-api
         build:
@@ -10,11 +18,3 @@ services:
             - 8081:8081
         expose:
             - "8081"
-    account-transfer-ui:
-        container_name: account-transfer-ui
-        build:
-            context: './account-transfer-ui'
-            dockerfile: Dockerfile
-        image: account-transfer-ui:latest
-        ports:
-            - 8080:8080
