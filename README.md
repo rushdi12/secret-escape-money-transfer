@@ -57,3 +57,4 @@ http://localhost:8080/
 http://localhost:8081/h2-console/login.jsp 
 
 ```
+6 - NOTE: Unit tests and integration tests can be found on the account-tranfer-api, account-transfer-ui tests have been omitted due to time constraints 

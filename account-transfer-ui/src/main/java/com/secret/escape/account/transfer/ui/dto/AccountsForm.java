@@ -18,7 +18,5 @@ public class AccountsForm {
 	private String email;
 	
 	private Long balance; 
-	
-	
  
 }

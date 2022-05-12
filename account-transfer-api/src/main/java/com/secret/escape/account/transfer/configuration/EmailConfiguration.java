@@ -10,7 +10,7 @@ public class EmailConfiguration {
 	@Bean
 	public SimpleMailMessage templateSimpleMessage() {
 	    SimpleMailMessage message = new SimpleMailMessage();
-	    message.setText("Payment Notification\n\nAccount Number: %s\nAmount: %s\nbalance: %s\n");
+	    message.setText("Payment Notification\n\nAccount Number: %s\nAmount: %s\nBalance: %s\n");
 	    
 	    return message;
 	}

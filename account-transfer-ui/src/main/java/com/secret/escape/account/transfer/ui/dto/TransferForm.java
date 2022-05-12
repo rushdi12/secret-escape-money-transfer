@@ -36,6 +36,5 @@ public class TransferForm {
 	@Length(min=1, max=20, message = "error.account.number")
 	private String toAccountNumber;
 	
-	
  
 }

@@ -13,7 +13,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class AccountDto {
 
-
 	@JsonProperty("id")
 	private Long id;
 	

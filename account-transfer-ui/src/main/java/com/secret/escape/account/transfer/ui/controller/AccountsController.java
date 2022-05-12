@@ -17,7 +17,6 @@ public class AccountsController {
 
 	@Autowired
 	private AccountsService accounstService;
-	
    
 	@GetMapping("/")
     public String showAccountsHome(Model model) {
@@ -54,6 +53,5 @@ public class AccountsController {
 					
 		}
 	}
-	
 
 }

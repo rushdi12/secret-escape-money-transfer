@@ -6,4 +6,5 @@ import com.secret.escape.account.transfer.ui.dto.ValidationResponseDto;
 public interface TransferValidationService {
 
 	public ValidationResponseDto isValidTransfer(TransferForm transferRequest);
+	
 }

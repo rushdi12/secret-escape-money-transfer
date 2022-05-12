@@ -29,7 +29,8 @@
 	<form  class="form-horizontal" action="#" th:action="@{/transactions}"
 		th:object="${accountsForm}" method="POST">
 		 <div class="form-group">
-		<select th:field="*{accountNumber}" class="form-control" id="dropDownList">
+		<select id="accountNumber" name="accountNumber" class="form-control" >
+		
 			<option value="0" disabled>select account</option>
 			<option th:each="account, itemStat : ${accountsList}"
 				th:value="${account.accountNumber}"
@@ -66,12 +67,9 @@
 
     <tr th:each="transaction, itemStat : ${transactions}">
     <td><span th:text="${__${itemStat.index}__ + 1}"> Row Number </span></td>
-<!--             <td><span th:text="${transaction.amount}"> Title </span></td> -->
                <td><span th:text="${transaction.displayAmount}"> Title </span></td>
-<!--             <td><span th:text="${transaction.fromAccountNumber}"> Author </span></td> -->
             <td><span th:text="${transaction.toAccountNumber}"> email </span></td>
 	        <td><input type="hidden" th:value="${transaction.id}" name="id"/></td>
-        			
     </tr> 
 </table>
 

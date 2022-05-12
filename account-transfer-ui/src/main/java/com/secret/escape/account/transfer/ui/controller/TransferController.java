@@ -26,7 +26,6 @@ import com.secret.escape.account.transfer.ui.util.Convert;
 
 @Controller
 public class TransferController {
-
 	
 	@Autowired
 	private AccountsService accountsService;

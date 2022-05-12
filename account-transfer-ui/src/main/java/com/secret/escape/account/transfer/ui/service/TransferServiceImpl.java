@@ -30,9 +30,6 @@ public class TransferServiceImpl implements TransferService {
 	private String API_ACCOUNT_TRANSFER_BASE_URL;
 
 
- 
-	 
-
 	@Override
 	public TransferResponseDto trransferFunds(TransferRequestDto transferRequestDto) {
 		TransferResponseDto details = new TransferResponseDto();
