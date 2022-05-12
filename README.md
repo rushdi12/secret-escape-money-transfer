@@ -24,7 +24,7 @@ cd pathtofile/docker-compose.yml
 2 - run docker-compose command  
 
 ```
-sudo docker-compose up
+sudo docker-compose up --build
 
 ```
 3 - application start up
